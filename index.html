@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 cardLike">
                 <div class="row">
-                    <input type="text" placeholder="0" style="width: 100%;" pattern="[0-9%−+×÷]{0,}" oninput="typingSymbolChange();">
+                    <input type="text" placeholder="0" style="width: 100%;" pattern="[0-9%−+×÷.]{0,}" oninput="typingSymbolChange();">
                 </div>
                 <div class="row">
                     <div class="col-3" style="margin: 0; padding: 0;">
@@ -37,7 +37,7 @@
                         <button onclick="backspace();" id="backspace">&ldca;</button>
                     </div>
                     <div class="col-3" style="margin: 0; padding: 0;">
-                        <button onclick="percent;" id="percent">%</button>
+                        <button onclick="percentage();" id="percent">%</button>
                     </div>
                     <div class="col-3" style="margin: 0; padding: 0;">
                         <button onclick="passid(id);" id="divide">&divide;</button>

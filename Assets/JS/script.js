@@ -45,8 +45,9 @@ function clearbox() {
 function caclulate() {
     var fieldArray = formatInputField();
     inputBox.value = (process(fieldArray));
-    if(inputBox.value==Infinity){
-        inputBox.value="Not Defined";
+    
+    if (inputBox.value == Infinity) {
+        inputBox.value = "Not Defined";
     }
 }
 
@@ -83,16 +84,30 @@ function process(array) {
             array = popAndInsert(index, answer, array);
         }
     })
-    return array
+
+    return array;
 }
 
 
 // This function gets the index of an operator, removes the operator, the number before and after it, and then inserts the answer.
 function popAndInsert(index, answer, array) {
     let newArray = [];
-    newArray = array.slice(0, index - 1);
+    newArray = array.slice(0, index-1);
     newArray.push(answer);
-    newArray.concat(array.slice(index + 1), array.length);
+    newArray=newArray.concat(array.slice(index+2 , array.length));
+    
+    
+    /*
+    // newArray.push(answer);
+    // newArray = newArray.concat(array.slice(index - 3, array.length));
+    // console.log(newArray);
+    if (array.length > 3) {
+        newArray.push(answer);
+        newArray = newArray.concat(array.slice(index - 3, array.length));
+    }
+    else{
+        newArray=[answer];
+    }*/
     return newArray;
 }
 
@@ -119,8 +134,8 @@ function actOperation(a, b, operator) {
     }
 }
 
-function typingSymbolChange(){
-    let field=inputBox.value;
+function typingSymbolChange() {
+    let field = inputBox.value;
     let changeList = ["/", "*", "-", "%"];
     let newList = ["÷", "×", "−", "%"];
 
@@ -128,10 +143,19 @@ function typingSymbolChange(){
 
         while (field.includes(item)) {
             let fieldIndex = field.indexOf(item);
-            field=field.replace(item,newList[index]);
+            field = field.replace(item, newList[index]);
             console.log(field);
         }
     })
-    inputBox.value=field;
+    inputBox.value = field;
 
+}
+function backspace() {
+    inputBox.value = inputBox.value.substring(0, inputBox.value.length - 1);
+}
+
+function percentage() {
+    var fieldArray = formatInputField();
+    var lastNumber=fieldArray[fieldArray.length-1];
+    inputBox.value=fieldArray.slice(0,fieldArray.length-1).join("")+process(fieldArray.slice(0,fieldArray.length-2))*lastNumber*0.01;
 }
