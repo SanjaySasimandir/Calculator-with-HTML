@@ -1,6 +1,11 @@
-*:focus {
-    outline: none;
+* {
+    font-family: 'Poppins', sans-serif;
 }
+
+*:focus {
+    outline: 0 !important;
+}
+
 button {
     border-radius: 1.5rem;
     height: 4rem;

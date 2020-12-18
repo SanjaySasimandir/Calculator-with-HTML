@@ -55,19 +55,28 @@ function formatInputField() {
     let field = inputBox.value;
     let eval = [];
     let temp = 0;
+    let floatFlag = 0;
+    let digitsAfterDecimal = 0;
     for (let i = 0; i < field.length; i++) {
         let elem = field[i];
+        if (floatFlag == 1 && !isNaN(elem)) {
+            digitsAfterDecimal += 1;
+        }
+        if (elem == '.') {
+            floatFlag = 1;
+        }
         if (!isNaN(elem)) {
             elem = parseInt(elem);
             temp = temp * 10 + elem;
-        }
-        else if (operations.includes(elem)) {
-            eval.push(temp);
+        } if (operations.includes(elem)) {
+            eval.push(temp / (Math.pow(10, digitsAfterDecimal)));
             eval.push(elem);
             temp = 0;
+            floatFlag = 0;
+            digitsAfterDecimal = 0
         }
     }
-    eval.push(temp);
+    eval.push(temp / (Math.pow(10, digitsAfterDecimal)));
     return eval;
 }
 
